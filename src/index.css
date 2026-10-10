@@ -1,0 +1,597 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Edu+QLD+Beginner:wght@400..700&display=swap');
+
+@import "tailwindcss";
+
+
+body {
+  font-family: "Poppins", sans-serif;
+    background: linear-gradient(45deg, #343C8F, rgb(39, 57, 117));
+  /* background-color: black;
+  color : white */
+}
+
+
+/* RotatePrompt.css */
+.rotate-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  color: #fff;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  text-align: center;
+}
+
+
+
+.tree-container {
+  min-height: 100vh;
+  color: white;
+  overflow-x: hidden;
+}
+
+.main-title {
+  text-align: center;
+  padding: 2rem;
+  font-size: 3em;
+  background: linear-gradient(45deg, #fff, #bdc3c7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
+}
+
+.tree-wrapper {
+  position: relative;
+  padding: 4rem;
+  /* perspective: 1000px; */
+  width: fit-content;
+  margin: auto;
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+  .main-title {
+    font-size: 1.8rem;
+    padding: 2rem 1rem;
+    line-height: 1.3;
+  }
+
+  .tree-wrapper {
+    padding: 1rem;
+    width: 100%;
+    
+  }
+
+  .children {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2rem !important;
+  }
+
+  .node {
+    margin: 1rem 0;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .node-content {
+    padding: 1.2rem !important;
+  }
+
+  .children::before {
+    height: 2rem;
+    left: 50%;
+    transform: translateX(-1px);
+  }
+
+  .node:not(.root-node)::before {
+    top: -2rem;
+    height: 2rem;
+  }
+
+.root-node .node-content {
+  background: rgb(33, 172, 83);
+  padding: 1.5rem !important; /* Reduced from 3rem */
+}
+
+  .generation-label {
+    font-size: 0.8rem;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 480px) {
+  .main-title {
+    font-size: 1.5rem;
+    padding: 1.5rem 0.5rem;
+  }
+
+  .node-content {
+    padding: 1rem !important;
+  }
+
+  .node-content h3 {
+    font-size: 1rem;
+  }
+
+  /* .spouse {
+    font-size: 0.8rem;
+  } */
+
+  .generation-label {
+    font-size: 0.7rem;
+    top: -20px;
+  }
+
+  .root-node .node-content {
+    padding: 1.5rem !important;
+  }
+
+  
+
+
+}
+
+/* Existing styles remain unchanged below this line */
+.node {
+  position: relative;
+  /* margin: 2rem; */
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.node-content {
+  background: rgba(44, 62, 80, 0.95);
+  padding: 2rem;
+  border-radius: 15px;
+  position: relative;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: all 0.3s;
+}
+
+
+.generation-label {
+  position: absolute;
+  top: -35px;
+  /* left: 10%; */
+  transform: translateX(-50%);
+  /* color: #7f8c8d; */
+  font-size: 0.7em;
+  letter-spacing: 1px;
+}
+
+.children {
+  display: flex;
+  justify-content: center;
+  position: relative; 
+  padding-top: 4rem;
+
+}
+
+.children::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 4rem;
+  width: 2px;
+  /* background: linear-gradient(to bottom, #7f8c8d, transparent); */
+  transform: translateX(-1px);
+}
+
+.root-node .node-content {
+  /* background: rgba(231, 76, 60, 0.95); */
+  background: rgb(33, 172, 83) ;
+  /* padding: 3rem; */
+}
+
+
+.spouse {
+  /* color: #bdc3c7; */
+  /* font-size: 0.9em; */
+  margin-top: 0.5rem;
+  position: relative;
+  padding-top: 0.5rem;
+}
+
+
+
+/* Animated connectors */
+.node:not(.root-node)::before {
+  content: '';
+  position: absolute;
+  top: -4rem;
+  left: 50%;
+  width: 2px;
+  height: 4rem;
+  background: linear-gradient(to bottom, #7f8c8d, transparent);
+}
+
+
+/* 3D effects */
+.tree-wrapper {
+  transform-style: preserve-3d;
+}
+
+.node {
+  transform-style: preserve-3d;
+}
+
+
+.generation-VIII .node-content {
+  padding: 1rem !important;
+  margin-right: 10px;
+  /* min-width: 120px; */
+}
+
+.generation-I .node-content {
+  padding: 1rem !important;
+  margin-right: 10px;
+  min-width: 120px;
+}
+
+.generation-III .node-content,
+.generation-II .node-content {
+  padding: 1rem !important;
+  margin-right: 10px;
+  /* min-width: 120px; */
+}
+
+.generation-IV .node-content {
+  padding: 1rem !important;
+  margin-right: 10px;
+  /* min-width: 120px; */
+}
+
+
+.generation-V .node-content,
+.generation-VII .node-content,
+.generation-VIII .node-content {
+  padding: 1rem !important;
+  margin-right: 10px;
+  /* min-width: 120px; */
+}
+
+
+/* Generation Specific Adjustments */
+.generation-IX .node-content,
+.generation-X .node-content {
+  padding: 1rem !important;
+  margin-right: 10px;
+  /* min-width: 120px; */
+}
+
+.generation-IX h3,
+.generation-X h3 {
+  /* font-size: 0.9em; */
+  /* line-height: 1.2; */
+  white-space: normal;
+  word-break: break-word;
+}
+
+/* .generation-IX .spouse,
+.generation-X .spouse {
+  font-size: 0.8em;
+} */
+
+
+/* .generation-II-21,
+.generation-II-23,
+.generation-II-24 {
+ height : 300px !important;
+} */
+
+
+
+
+@media (min-width: 768px) {
+
+
+
+  .id-IV-1 {
+    position: absolute;
+    top: 55px;
+    left: 120px;
+    width : 200px !important;
+  }
+
+  .monisha-node-id-IV-1:not(.root-node)::before {
+  content: '';
+  position: absolute;
+  top: -3.5rem;
+  left: 25%;
+  width: 2px;
+  height: 4rem;
+  background: linear-gradient(to bottom, #7f8c8d, transparent);
+}
+
+.monisha-node-id-III-3:not(.root-node)::before {
+  content: '';
+  position: absolute;
+  top: -4rem;
+  left: 37%;
+  width: 2px;
+  height: 4rem;
+  background: linear-gradient(to bottom, #7f8c8d, transparent);
+}
+
+.id-II-15 {
+  width : 800px !important;
+}
+
+.id-III-1 {
+  width : 600px !important;
+}
+
+.id-III-2 {
+  width : 300px !important;
+}
+
+.id-II-14 {
+  width : 100px !important;
+}
+
+.id-II-13 {
+  width : 150px !important;
+}
+
+.id-II-11 {
+  width : 150px !important;
+}
+
+.id-II-12 {
+  width : 200px !important;
+}
+
+
+/* tarun */
+
+.id-V-12 {
+  width : 180px !important;
+}
+
+/* tarun */
+
+  .set-II-21 ,
+    .set-II-23 ,
+      .set-II-24 {
+    height: 125px;
+  }
+
+
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+
+
+  .tree-wrapper {
+    width: 90% !important;
+    padding: 3rem;
+  }
+
+  .generation-IX .node-content,
+  .generation-X .node-content {
+    padding: 0.8rem !important;
+    min-width: 140px;
+  }
+
+  .generation-IX h3,
+  .generation-X h3 {
+    font-size: 0.8em;
+  }
+
+  .children {
+    padding-top: 2rem;
+  }
+
+  .children::before {
+    height: 2rem;
+  }
+
+  .node:not(.root-node)::before {
+    height: 3.5rem;
+    top: -3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .generation-IX .node-content,
+  .generation-X .node-content {
+    min-width: 120px;
+    padding: 0.5rem !important;
+  }
+
+  .generation-IX h3,
+  .generation-X h3 {
+    font-size: 0.7em;
+  }
+
+  .generation-label {
+    font-size: 0.5em;
+    top: -20px;
+  }
+
+  .monisha-node-id-X-1:not(.root-node)::before {
+  content: '';
+  position: absolute;
+  top: -2rem;
+  left: 50%;
+  width: 2px;
+  height: 2rem;
+  background: linear-gradient(to bottom, #7f8c8d, transparent);
+}
+
+  .monisha-node-id-IX-3:not(.root-node)::before {
+  content: '';
+  position: absolute;
+  top: -2rem;
+  left: 50%;
+  width: 2px;
+  height: 2rem;
+  background: linear-gradient(to bottom, #7f8c8d, transparent);
+}
+
+  .monisha-node-id-IX-5:not(.root-node)::before {
+  content: '';
+  position: absolute;
+  top: -2rem;
+  left: 50%;
+  width: 2px;
+  height: 2rem;
+  background: linear-gradient(to bottom, #7f8c8d, transparent);
+}
+
+
+  .monisha-node-id-VII-1:not(.root-node)::before {
+  content: '';
+  position: absolute;
+  top: -2rem;
+  left: 50%;
+  width: 2px;
+  height: 2rem;
+  background: linear-gradient(to bottom, #7f8c8d, transparent);
+}
+
+  .monisha-node-id-VI-3:not(.root-node)::before {
+  content: '';
+  position: absolute;
+  top: -2rem;
+  left: 50%;
+  width: 2px;
+  height: 2rem;
+  background: linear-gradient(to bottom, #7f8c8d, transparent);
+}
+
+
+  .monisha-node-id-VI-5:not(.root-node)::before {
+  content: '';
+  position: absolute;
+  top: -2rem;
+  left: 50%;
+  width: 2px;
+  height: 2rem;
+  background: linear-gradient(to bottom, #7f8c8d, transparent);
+}
+
+  .monisha-node-id-II-23:not(.root-node)::before {
+  content: '';
+  position: absolute;
+  top: -2rem;
+  left: 50%;
+  width: 2px;
+  height: 2rem;
+  background: linear-gradient(to bottom, #7f8c8d, transparent);
+}
+
+
+  .monisha-node-id-II-2:not(.root-node)::before {
+  content: '';
+  position: absolute;
+  top: -2rem;
+  left: 50%;
+  width: 2px;
+  height: 2rem;
+  background: linear-gradient(to bottom, #7f8c8d, transparent);
+}
+
+  .monisha-node-id-VI-2:not(.root-node)::before {
+  content: '';
+  position: absolute;
+  top: -2rem;
+  left: 50%;
+  width: 2px;
+  height: 2rem;
+  background: linear-gradient(to bottom, #7f8c8d, transparent);
+}
+
+  .monisha-node-id-V-3:not(.root-node)::before {
+  content: '';
+  position: absolute;
+  top: -2rem;
+  left: 50%;
+  width: 2px;
+  height: 2rem;
+  background: linear-gradient(to bottom, #7f8c8d, transparent);
+}
+
+  .monisha-node-id-V-5:not(.root-node)::before {
+  content: '';
+  position: absolute;
+  top: -2rem;
+  left: 50%;
+  width: 2px;
+  height: 2rem;
+  background: linear-gradient(to bottom, #7f8c8d, transparent);
+}
+
+  .monisha-node-id-III-2:not(.root-node)::before {
+  content: '';
+  position: absolute;
+  top: -4rem;
+  left: 50%;
+  width: 2px;
+  height: 4rem;
+  background: linear-gradient(to bottom, #7f8c8d, transparent);
+}
+
+  .monisha-node-id-II-11:not(.root-node)::before {
+  content: '';
+  position: absolute;
+  top: -3rem;
+  left: 50%;
+  width: 2px;
+  height: 3rem;
+  background: linear-gradient(to bottom, #7f8c8d, transparent);
+}
+
+  .monisha-node-id-II-12:not(.root-node)::before {
+  content: '';
+  position: absolute;
+  top: -2rem;
+  left: 50%;
+  width: 2px;
+  height: 2rem;
+  background: linear-gradient(to bottom, #7f8c8d, transparent);
+}
+
+
+  .monisha-node-id-II-15:not(.root-node)::before {
+  content: '';
+  position: absolute;
+  top: -2rem;
+  left: 50%;
+  width: 2px;
+  height: 2rem;
+  background: linear-gradient(to bottom, #7f8c8d, transparent);
+}
+
+
+  .monisha-node-id-II-14:not(.root-node)::before {
+  content: '';
+  position: absolute;
+  top: -2rem;
+  left: 50%;
+  width: 2px;
+  height: 4rem;
+  background: linear-gradient(to bottom, #7f8c8d, transparent);
+}
+
+
+}
+
+
+ 
+
